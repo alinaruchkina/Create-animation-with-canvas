@@ -1,31 +1,19 @@
-var canvas = document.getElementById('c1');
-var ctx = canvas.getContext('2d');
+let canvas = document.getElementById('c1');
+let ctx = canvas.getContext('2d');
+var myColor = 'red';
+document.getElementById('color').oninput = function () {
+  myColor = this.value;
+};
 
-ctx.beginPath();
-ctx.strokeStyle = 'red';
-ctx.lineWidth = '5';
-ctx.moveTo(100, 50);
-ctx.lineTo(150, 150);
-ctx.stroke();
-
-ctx.beginPath();
-ctx.strokeStyle = 'blue';
-ctx.lineWidth = '20';
-ctx.moveTo(200, 50);
-ctx.lineTo(300, 50);
-ctx.lineTo(300, 100);
-ctx.lineCap = 'square';
-ctx.stroke();
-ctx.clearRect(0, 0, 400, 200);
-
-ctx.beginPath();
-ctx.moveTo(50, 150);
-ctx.lineTo(150, 50);
-ctx.lineTo(200, 150);
-ctx.lineTo(50, 150);
-ctx.lineWidth = '5';
-ctx.lineCap = 'butt';
-ctx.fillStyle = 'yellow';
-
-ctx.stroke();
-ctx.fill();
+canvas.onmousedown = function (event) {
+  canvas.onmousemove = function (event) {
+    let x = event.offsetX;
+    let y = event.offsetY;
+    ctx.fillRect(x - 5, y - 5, 10, 10);
+    ctx.fillStyle = myColor;
+    ctx.fill();
+  };
+  canvas.onmouseup = function () {
+    canvas.onmousemove = null;
+  };
+};
