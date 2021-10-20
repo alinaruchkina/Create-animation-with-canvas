@@ -5,6 +5,8 @@ document.getElementById('color').oninput = function () {
   myColor = this.value;
 };
 
+let a;
+
 canvas.onmousedown = function (event) {
   canvas.onmousemove = function (event) {
     let x = event.offsetX;
