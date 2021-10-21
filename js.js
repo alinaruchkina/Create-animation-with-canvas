@@ -1,19 +1,17 @@
 let canvas = document.getElementById('c1');
 let ctx = canvas.getContext('2d');
-let x = 0;
+
+let R = 200;
+let r = 140;
+let d = 120;
+let teta = 0;
 let timer;
-let tome;
 
-drawSin();
-
-function drawSin() {
-  y = Math.sin(x);
-  if (x >= 400) {
-    x = 0;
-  } else {
-    x = x + 0.3;
-  }
-
-  ctx.fillRect(5 * x, 100 + 20 * y, 2, 2);
-  timer = setTimeout(drawSin, 50);
+function spiro() {
+  let x = (R - r) * Math.cos(teta) + d * Math.cos(((R - r) * teta) / r);
+  let y = (R - r) * Math.sin(teta) - d * Math.sin(((R - r) * teta) / r);
+  teta = teta + 0.1;
+  ctx.fillRect(300 + x, 300 + y, 4, 4);
+  timer = setTimeout(spiro, 50);
 }
+spiro();
